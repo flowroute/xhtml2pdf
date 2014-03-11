@@ -35,12 +35,12 @@ import urlparse
 
 rgb_re = re.compile("^.*?rgb[(]([0-9]+).*?([0-9]+).*?([0-9]+)[)].*?[ ]*$")
 
-_reportlab_version = tuple(map(int, reportlab.Version.split('.')))
-if _reportlab_version < (2,1):
+# Fix for 2.1+ upgrade with Reportlab
+# https://groups.google.com/forum/#!topic/xhtml2pdf/mihS51DtZkU
+if not (reportlab.Version[:3] >= "2.1"):
     raise ImportError("Reportlab Version 2.1+ is needed!")
 
 REPORTLAB22 = _reportlab_version >= (2, 2)
-# print "***", reportlab.Version, REPORTLAB22, reportlab.__file__
 
 log = logging.getLogger("xhtml2pdf")
 
