@@ -40,7 +40,10 @@ rgb_re = re.compile("^.*?rgb[(]([0-9]+).*?([0-9]+).*?([0-9]+)[)].*?[ ]*$")
 if not (reportlab.Version[:3] >= "2.1"):
     raise ImportError("Reportlab Version 2.1+ is needed!")
 
-REPORTLAB22 = _reportlab_version >= (2, 2)
+# If import error not raised,
+# just monkey patch it to True
+REPORTLAB22 = True
+# REPORTLAB22 = reportlab.Version >= (2, 2)
 
 log = logging.getLogger("xhtml2pdf")
 
